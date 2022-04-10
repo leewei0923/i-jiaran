@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
+/*
+ * @Author: leewei
+ * @Date: 2022-04-10 10:52:32
+ * @LastEditors: leewei
+ * @LastEditTime: 2022-04-10 10:54:11
+ * @FilePath: \i-jiaran\src\App.js
+ * @Description: 
+ * 
+ * Copyright (c) 2022 by leewei, All Rights Reserved. 
+ */
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     "欢迎来到i嘉然"
     </div>
   );
 }
