@@ -1,0 +1,16 @@
+# 打包生成物
+/build/
+
+# node_modeules
+/node_modules/
+
+# 静态文件
+/public/
+# 配置文件
+package.json
+
+# webpack文件
+/config/
+
+# eslint
+.eslintrc.js

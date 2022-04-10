@@ -1,0 +1,38 @@
+{
+  "name": "i嘉然",
+  "description": "基于Asoul人物形象制作多功能谷歌插件",
+  "version": "0.0.2",
+  "manifest_version": 3,
+  "permissions": [
+    "contextMenus",
+    "history",
+    "pageCapture",
+    "cookies",
+    "tabs",
+    "notifications",
+    "webRequest",
+    "storage"
+  ],
+  "short_name": "jia-ran",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "/images/logo.png",
+      "32": "/images/logo.png",
+      "48": "/images/logo.png",
+      "128": "/images/logo.png"
+    }
+  },
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "background": {
+    "service_worker": "/static/js/background.js"
+  },
+  "icons": {
+    "16": "/images/logo.png",
+    "32": "/images/logo.png",
+    "48": "/images/logo.png",
+    "128": "/images/logo.png"
+  }
+}
