@@ -66,7 +66,7 @@ module.exports = {
     'react/destructuring-assignment': [0],
     'react/react-in-jsx-scope': [0],
     'react/jsx-indent-props': [0],
-    'import/extensions': "always",
+    'import/extensions': ['error', 'always', { ignorePackages: true }],
     indent: [
       'error',
       2,

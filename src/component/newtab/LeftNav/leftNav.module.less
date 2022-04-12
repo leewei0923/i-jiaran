@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+
+  .leftNavBox {
+    display: flex;
+    height: 40px;
+    width: 100%;
+    margin: 5px 0;
+    cursor: pointer;
+    color: white;
+
+    &:hover {
+      background-color: rgba(244, 244,244, 0.5);
+      border-right: 3px solid #1890FF;
+      color: black;
+    }
+    .icon,
+    .btn {
+      color: inherit;
+      line-height: 40px;
+      text-align: center;
+    }
+    .icon {
+      font-size: 22px;
+      margin: 0 10px 0 20px;
+    }
+
+    .btn {
+      font-size: 15px;
+    }
+  }
+}

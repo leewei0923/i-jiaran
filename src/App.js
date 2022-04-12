@@ -1,8 +1,10 @@
 import { Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import Icon from './component/Icon';
+import Icon from './component/Icon.js';
 import styles from '~/styles/app.module.less';
-import QuickLink from './component/newtab/QuickLink/QuickLink';
+import QuickLink from './component/newtab/QuickLink/QuickLink.js';
+import LeftNav from './component/newtab/LeftNav/LeftNav.js';
+import { leftlist } from './util/visData.js';
 
 function App() {
   return (
@@ -49,6 +51,17 @@ function App() {
         <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
         <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
         <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
+      </div>
+
+      {/* 弹出的导航栏 */}
+
+      <div className={styles.popupPageMask}>
+        <div className={styles.popupPage}>
+          <div className={styles.leftContainer}>
+            <LeftNav data={leftlist} />
+          </div>
+          <div className={styles.rightContainer}></div>
+        </div>
       </div>
     </div>
   );
