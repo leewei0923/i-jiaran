@@ -6,6 +6,7 @@ import Icon from './component/Icon.js';
 import styles from '~/styles/app.module.less';
 import QuickLink from './component/newtab/QuickLink/QuickLink.js';
 import LeftNav from './component/newtab/LeftNav/LeftNav.js';
+import RightNav from './component/newtab/RightNav/RightNav.js';
 import { changeLeftNavState } from './store/action.js';
 import { leftlist } from './util/visData.js';
 
@@ -80,7 +81,9 @@ function App() {
           </div>
 
           {/* 右导航 */}
-          <div className={styles.rightContainer}></div>
+          <div className={styles.rightContainer}>
+            <RightNav />
+          </div>
         </div>
       </div>
     </div>
