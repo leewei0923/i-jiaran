@@ -1,12 +1,22 @@
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import Icon from './component/Icon.js';
 import styles from '~/styles/app.module.less';
 import QuickLink from './component/newtab/QuickLink/QuickLink.js';
 import LeftNav from './component/newtab/LeftNav/LeftNav.js';
+import { changeLeftNavState } from './store/action.js';
 import { leftlist } from './util/visData.js';
 
 function App() {
+  const dispatch = useDispatch();
+
+  //  首页按钮
+  const onIndexBtn = () => {
+    dispatch(changeLeftNavState('index'));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.mask}> </div>
@@ -57,9 +67,19 @@ function App() {
 
       <div className={styles.popupPageMask}>
         <div className={styles.popupPage}>
+          {/* // 左导航 */}
+
           <div className={styles.leftContainer}>
+            <div className={styles.leftNavIndex} onClick={() => onIndexBtn()}>
+              <span className={styles.leftIndexIco}>
+                <Icon type="icon-index" />
+              </span>
+              <p>首页</p>
+            </div>
             <LeftNav data={leftlist} />
           </div>
+
+          {/* 右导航 */}
           <div className={styles.rightContainer}></div>
         </div>
       </div>

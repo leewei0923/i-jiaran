@@ -1,5 +1,5 @@
 @searchColor: #f6f6f6;
-@popupPageColor: #F0F2F5; // 弹出层背景色 
+@popupPageColor: #f0f2f5; // 弹出层背景色
 
 .container {
   width: 100vw;
@@ -122,6 +122,29 @@
         background-color: #8590a6;
         border-radius: 15px 0 0 15px;
         overflow: hidden;
+
+        .leftNavIndex {
+          display: flex;
+          height: 40px;
+          width: 100%;
+          cursor: pointer;
+          color: white;
+          background-color: #4B8BF5;
+          .leftIndexIco {
+            font-size: 22px;
+            margin: 0 10px 0 20px;
+            color: inherit;
+            line-height: 40px;
+            text-align: center;
+          }
+
+          & > p {
+            font-size: 15px;
+            color: inherit;
+            line-height: 40px;
+            text-align: center;
+          }
+        }
       }
 
       .rightContainer {
