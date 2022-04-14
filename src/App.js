@@ -1,29 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { Button } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import classnames from 'classnames';
 import Icon from './component/Icon.js';
 import styles from '~/styles/app.module.less';
 import QuickLink from './component/newtab/QuickLink/QuickLink.js';
 import LeftNav from './component/newtab/LeftNav/LeftNav.js';
 import RightNav from './component/newtab/RightNav/RightNav.js';
 import { changeLeftNavState } from './store/action.js';
-import { leftlist } from './util/visData.js';
+import { leftlist, Rightlist } from './util/visData.js';
+import Exhibition from './component/newtab/Exhibition/Exhibition.js';
 
 function App() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [navHiden, setNavHiden] = useState(true);
+
+  // 关闭导航栏
+  const onCloseNav = () => {
+    setNavHiden(true);
+  };
+
+  const onOpenNav = () => {
+    setNavHiden(false);
+  };
 
   //  首页按钮
   const onIndexBtn = () => {
     dispatch(changeLeftNavState('index'));
+    navigate('/');
   };
+
+  const popupPageMask = classnames({
+    [styles.popupPageMask]: true,
+    [styles.hiden]: navHiden
+  });
 
   return (
     <div className={styles.container}>
       <div className={styles.mask}> </div>
       {/* 左右两个选项 */}
       <div className={styles.topOptions}>
-        <Button icon={<Icon type="icon-menu--fill" />} className={styles.more} />
+        <Button icon={<Icon type="icon-menu--fill" />} className={styles.more} onClick={() => onOpenNav()} />
         <Button icon={<Icon type="icon-setting" />} className={styles.setting} />
       </div>
 
@@ -66,7 +86,7 @@ function App() {
 
       {/* 弹出的导航栏 */}
 
-      <div className={styles.popupPageMask}>
+      <div className={popupPageMask}>
         <div className={styles.popupPage}>
           {/* // 左导航 */}
 
@@ -82,7 +102,14 @@ function App() {
 
           {/* 右导航 */}
           <div className={styles.rightContainer}>
-            <RightNav />
+            <div className={styles.closeBtn} onClick={(e) => onCloseNav(e)}>
+              <Icon type="icon-guanbi" />
+            </div>
+
+            <Routes>
+              <Route path="/" element={<Exhibition />} />
+              <Route path="rightNav" element={<RightNav data={Rightlist} />} />
+            </Routes>
           </div>
         </div>
       </div>

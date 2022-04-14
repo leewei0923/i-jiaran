@@ -13,6 +13,10 @@
     "webRequest",
     "storage"
   ],
+  "host_permissions": [
+        "http://*/*",
+        "https://*/*"
+  ],
   "short_name": "jia-ran",
   "action": {
     "default_popup": "popup.html",

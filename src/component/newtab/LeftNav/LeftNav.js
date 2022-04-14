@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classnames from 'classnames';
 import Icon from '~/component/Icon.js';
@@ -8,11 +9,14 @@ import { changeLeftNavState } from '~/store/action.js';
 export default function LeftNav(props) {
   const { data } = props;
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onDown = (info) => {
     dispatch(changeLeftNavState(info.key));
+    navigate('rightNav');
   };
 
+  //  左边导航栏的状态(key)
   const leftState = useSelector((state) => state.changeNavState.leftNavState);
   const leftNavBox = ({ key }) =>
     classnames({
