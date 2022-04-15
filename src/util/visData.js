@@ -1,45 +1,87 @@
+import {
+  ReactIcon,
+  HotIcon,
+  DevIcon,
+  OfficeIcon,
+  VideoIcon,
+  ShoppingIcon,
+  BeautifyIcon,
+  MoreIcon,
+  SougouIcon,
+  BaiduIcon,
+  BingIcon,
+  GoogleIcon
+} from '~/component/Icon.js';
+
 export const leftlist = [
   {
     id: '1',
     name: '热门',
     key: 'hot',
-    icon: 'icon-remen'
+    icon: <HotIcon style={{ color: '#F8242A' }} />
   },
   {
     id: '2',
     name: '开发',
     key: 'dev',
-    icon: 'icon-kaifa'
+    icon: <DevIcon />
   },
   {
     id: '3',
     name: '办公',
     key: 'office',
-    icon: 'icon-bangong'
+    icon: <OfficeIcon />
   },
   {
     id: '4',
     name: '视频',
     key: 'video',
-    icon: 'icon-shipin'
+    icon: <VideoIcon />
   },
   {
     id: '5',
     name: '购物',
     key: 'shopping',
-    icon: 'icon-gouwu'
+    icon: <ShoppingIcon />
   },
   {
     id: '6',
     name: '美化',
     key: 'beautify',
-    icon: 'icon-meihuadaima'
+    icon: <BeautifyIcon />
   },
   {
     id: '7',
     name: '更多',
     key: 'more',
-    icon: 'icon-more'
+    icon: <MoreIcon />
+  }
+];
+
+export const SearchEngine = [
+  {
+    id: '1',
+    name: '搜狗',
+    key: 'Sougou',
+    icon: <SougouIcon style={{ fontSize: '20px' }} />
+  },
+  {
+    id: '2',
+    name: '谷歌',
+    key: 'Google',
+    icon: <GoogleIcon style={{ fontSize: '20px' }} />
+  },
+  {
+    id: '3',
+    name: '百度',
+    key: 'Baidu',
+    icon: <BaiduIcon style={{ fontSize: '20px' }} />
+  },
+  {
+    id: '4',
+    name: '必应',
+    key: 'Bing',
+    icon: <BingIcon style={{ fontSize: '20px' }} />
   }
 ];
 
@@ -53,21 +95,21 @@ export const Rightlist = [
         id: '1',
         key: 'react',
         name: 'react',
-        icon: 'icon-react',
+        icon: <ReactIcon />,
         url: ''
       },
       {
         id: '2',
         key: 'react',
         name: 'react',
-        icon: 'icon-react',
+        icon: <ReactIcon />,
         url: ''
       },
       {
         id: '3',
         key: 'react',
         name: 'react',
-        icon: 'icon-react',
+        icon: <ReactIcon />,
         url: ''
       }
     ]
@@ -81,21 +123,21 @@ export const Rightlist = [
         id: '1',
         key: 'facebook',
         name: 'facebook',
-        icon: 'icon-react',
+        icon: <ReactIcon />,
         url: ''
       },
       {
         id: '1',
         key: '推特',
         name: '推特',
-        icon: 'icon-react',
+        icon: <ReactIcon />,
         url: ''
       },
       {
         id: '1',
         key: '谷歌',
         name: '谷',
-        icon: 'icon-react',
+        icon: <ReactIcon />,
         url: ''
       }
     ]

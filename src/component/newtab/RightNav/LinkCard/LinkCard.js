@@ -1,5 +1,4 @@
 import React from 'react';
-import Icon from '~/component/Icon.js';
 import styles from './linkCard.module.less';
 
 export default function LinkCard(props) {
@@ -9,7 +8,7 @@ export default function LinkCard(props) {
     <div className={styles.container}>
       <div className={styles.icon}>
         {/* <img src="" alt="" /> */}
-        <Icon type={icon || ''} />
+        {icon}
       </div>
 
       <div className={styles.desc}>

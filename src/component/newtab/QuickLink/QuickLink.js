@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Popconfirm } from 'antd';
-import Icon from '../../Icon.js';
+import { MoreIcon } from '../../Icon.js';
 import styles from './quickLink.module.less';
 import { genFirstWord } from '~/util/genFirstWord.js';
 
@@ -42,7 +42,7 @@ export default function QuickLink(props) {
               okText="删除"
               cancelText="取消"
             >
-              <Button icon={<Icon type="icon-more" />} className={styles.more} />
+              <Button icon={<MoreIcon />} className={styles.more} />
             </Popconfirm>
           </div>
         </div>

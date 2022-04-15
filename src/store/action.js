@@ -5,3 +5,9 @@ export const changeLeftNavState = (state) => (dispatch) =>
     type: types.LEFTNAVSTATE,
     changeState: state
   });
+
+export const changeDefaultSearch = (state) => (dispatch) =>
+  dispatch({
+    type: types.DEFAULTSEARCH,
+    content: state
+  });

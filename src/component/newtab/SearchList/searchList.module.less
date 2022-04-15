@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  top: 90px;
+  margin: 0 auto;
+  width: 60%;
+  height: 30px;
+
+  .checkBox {
+    display: flex;
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    margin: 0 5px;
+    align-items: center;
+    cursor: pointer;
+    .radio {
+      margin: 0 2px;
+
+      &::after {
+        content: ' ';
+        display: block;
+        width: 35px;
+        height: 20px;
+      }
+    }
+  }
+}
