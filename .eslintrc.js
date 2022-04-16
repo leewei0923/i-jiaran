@@ -108,6 +108,7 @@ module.exports = {
         ignoreComments: false
       }
     ],
-    'template-curly-spacing': [0]
+    'template-curly-spacing': [0],
+    'object-curly-newline': [0]
   }
 };

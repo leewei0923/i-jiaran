@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, message } from 'antd';
@@ -47,6 +47,14 @@ function App() {
   const onGetText = (e) => {
     setSearchContent(e.target.value);
   };
+
+  // 通知
+
+  useEffect(() => {
+    if (!window.navigator.onLine) {
+      message.warning('网络没有连接');
+    }
+  }, []);
 
   const onSearchContent = () => {
     if (searchContent.length === 0) {
