@@ -14,12 +14,15 @@ import Exhibition from './component/newtab/Exhibition/Exhibition.js';
 import SearchList from './component/newtab/SearchList/SearchList.js';
 // eslint-disable-next-line object-curly-newline
 import { MenuIcon, SettingIcon, IndexIcon, CloseIcon } from './component/Icon.js';
+import { HandleTab } from '~/util/handleTabs.js';
 
 function App() {
+  const handleTab = new HandleTab();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [searchContent, setSearchContent] = useState('');
   const [navHiden, setNavHiden] = useState(true);
+  const [tabInfo, setTabInfo] = useState([]);
 
   const { defaultSearch, defaultSearchName } = useSelector((state) => state.defaultSearch);
   // 关闭导航栏
@@ -48,12 +51,22 @@ function App() {
     setSearchContent(e.target.value);
   };
 
-  // 通知
+  // 获取历史记录生成tab
+  const genTabList = () => {
+    const query = {
+      text: '',
+      startTime: Date.now() - 86400000,
+      endTime: Date.now()
+    };
+
+    chrome.history.search(query, (e) => {
+      const tabList = handleTab.getList(e);
+      setTabInfo(tabList.slice(0, 11));
+    });
+  };
 
   useEffect(() => {
-    if (!window.navigator.onLine) {
-      message.warning('网络没有连接');
-    }
+    genTabList();
   }, []);
 
   const onSearchContent = () => {
@@ -113,29 +126,10 @@ function App() {
       {/* 下方最近访问的网站 */}
 
       <div className={styles.recentUrl}>
-        <QuickLink
-          ico="https://static.leetcode-cn.com/cn-mono-assets/production/assets/logo-dark-cn.c42314a8.svg"
-          url="https://www.7miaoyu.com"
-          linkName="七秒鱼"
-        />
-        <QuickLink
-          ico="https://gw.alipayobjects.com/zos/rmsportal/rlpTLlbMzTNYuZGGCVYM.png"
-          url="https://www.7miaoyu.com"
-          linkName="七秒鱼"
-        />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼鱼鱼鱼鱼hdsaifsfhus" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
-        <QuickLink url="https://www.7miaoyu.com" linkName="七秒鱼" />
+        {tabInfo.map((item) => (
+          <QuickLink key={item.key} linkName={item.title} title={item.title} turl={item.url} callback={genTabList} />
+        ))}
+        {/* <QuickLink key="1" linkName="1" title="1" turl="1" /> */}
       </div>
 
       {/* 弹出的导航栏 */}

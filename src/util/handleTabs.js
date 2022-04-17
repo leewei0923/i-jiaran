@@ -51,7 +51,7 @@ export class HandleTab {
       list.push(v);
     });
 
-    list.sort((a, b) => a.visitCount - b.visitCount);
+    list.sort((a, b) => b.visitCount - a.visitCount);
 
     return list;
   }

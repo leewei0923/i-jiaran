@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Popconfirm } from 'antd';
+import { Button, message, Popconfirm } from 'antd';
 import { MoreIcon } from '../../Icon.js';
 import styles from './quickLink.module.less';
 import { genFirstWord } from '~/util/genFirstWord.js';
@@ -10,22 +10,35 @@ export default function QuickLink(props) {
    * linkName 链接名称
    * url 网址
    */
-  const { ico, linkName } = props;
+  const { ico, linkName, turl, callback } = props;
 
   //  操作按钮
   // 确定
   const onDelete = () => {
-    console.log('删除');
+    chrome.history.deleteUrl({ url: turl }, () => {
+      message.success('删除成功');
+      callback();
+    });
   };
 
   //  删除
   const onCancle = () => {
-    console.log('取消');
+    message.warn('已取消');
+  };
+
+  // 跳转页面
+
+  const goto = () => {
+    if (!window.navigator.onLine) {
+      message.error('网络没有连接');
+    } else {
+      window.location.assign(turl);
+    }
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.inneContainer}>
+      <div className={styles.inneContainer} onClick={() => goto()}>
         <div className={styles.icoBox}>
           <div className={styles.icon}>
             {ico ? (
@@ -34,22 +47,21 @@ export default function QuickLink(props) {
               <p className={styles.imgFont}>{genFirstWord(linkName)}</p>
             )}
           </div>
-          <div className={styles.options}>
-            <Popconfirm
-              title="确定要删除当前的"
-              onConfirm={() => onDelete()}
-              onCancel={() => onCancle()}
-              okText="删除"
-              cancelText="取消"
-            >
-              <Button icon={<MoreIcon />} className={styles.more} />
-            </Popconfirm>
-          </div>
         </div>
-
         <p className={styles.linkName} title={linkName}>
           {linkName}
         </p>
+      </div>
+      <div className={styles.options}>
+        <Popconfirm
+          title="确定要删除当前的"
+          onConfirm={() => onDelete()}
+          onCancel={() => onCancle()}
+          okText="删除"
+          cancelText="取消"
+        >
+          <Button icon={<MoreIcon />} className={styles.more} />
+        </Popconfirm>
       </div>
     </div>
   );
