@@ -17,7 +17,7 @@ export default function QuickLink(props) {
   const onDelete = () => {
     chrome.history.deleteUrl({ url: turl }, () => {
       message.success('删除成功');
-      callback();
+      callback;
     });
   };
 

@@ -66,7 +66,7 @@ function App() {
   };
 
   useEffect(() => {
-    genTabList();
+    genTabList;
   }, []);
 
   const onSearchContent = () => {
@@ -94,7 +94,7 @@ function App() {
 
   const popupPageMask = classnames({
     [styles.popupPageMask]: true,
-    [styles.hiden]: navHiden
+    [styles.hiden]: !navHiden
   });
 
   return (
@@ -127,7 +127,7 @@ function App() {
 
       <div className={styles.recentUrl}>
         {tabInfo.map((item) => (
-          <QuickLink key={item.key} linkName={item.title} title={item.title} turl={item.url} callback={genTabList} />
+          <QuickLink key={item.key} linkName={item.title} title={item.title} turl={item.url} callback="genTabList" />
         ))}
         {/* <QuickLink key="1" linkName="1" title="1" turl="1" /> */}
       </div>
