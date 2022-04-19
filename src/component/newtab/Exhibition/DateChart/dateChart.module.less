@@ -1,0 +1,112 @@
+.container {
+  width: 93%;
+  height: 200px;
+  position: relative;
+  // margin: 0 20px 0 0;
+  background-color: #f5f5f7;
+  border-radius: 10px;
+  .select {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10px 10px;
+    p {
+      margin: 3px;
+      font-size: 12px;
+      color: rgb(85, 87, 84);
+      font-weight: 600;
+      cursor: pointer;
+    }
+  }
+
+  .weekList {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: space-between;
+    .weeks {
+      background-color: #eeeeee;
+      width: 95%;
+      margin: 2px;
+      height: 20px;
+      border-radius: 20px;
+      position: relative;
+      .date {
+        position: absolute;
+        z-index: 5;
+        left: 10px;
+        color: rgb(222, 222, 222);
+      }
+
+      .week {
+        position: absolute;
+        z-index: 5;
+        font-size: 12px;
+        font-weight: 600;
+        left: 100px;
+      }
+      .duration {
+        position: absolute;
+        z-index: 5;
+        right: 10px;
+      }
+
+      .progress {
+        position: absolute;
+        top: 0;
+        height: 18px;
+        margin: 2px;
+        border-radius: 20px;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+[data-dur='1'] {
+  background-color: #5EA361;
+}
+[data-dur='2'] {
+  background-color: #5EA361;
+}
+[data-dur='3'] {
+  background-color: #5EA361;
+}
+[data-dur='4'] {
+  background-color: #5EA361;
+}
+[data-dur='5'] {
+  background-color: #5EA361;
+}
+[data-dur='6'] {
+  background:linear-gradient(to right,#00bcd4 0,#80deea 100%);width:80%
+}
+[data-dur='7'] {
+  background:linear-gradient(to right,#00bcd4 0,#80deea 100%);width:80%
+}
+[data-dur='8'] {
+  background:linear-gradient(to right,#00bcd4 0,#80deea 100%);width:80%
+}
+[data-dur='9'] {
+  background:linear-gradient(to right,#00bcd4 0,#80deea 100%);width:80%
+}
+[data-dur='10'] {
+  background-color: #D9006E;
+}
+[data-dur='11'] {
+  background-color: #D9006E;
+}
+[data-dur='12'] {
+  background-color: #D9006E;
+}
+[data-dur='13'] {
+  background-color: #D9006E;
+}
+[data-dur='14'] {
+  background-color: #D9006E;
+}
+[data-dur='15'] {
+  background-color: #D9006E;
+}
+[data-dur='16'] {
+  background-color: #D9006E;
+}
