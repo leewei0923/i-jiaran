@@ -4,6 +4,7 @@ import Welcome from './Welcome/Welcome.js';
 import Date from './Date/Date.js';
 import DateChart from './DateChart/DateChart.js';
 import Popular from './Popular/Popular.js';
+import RecentActivity from './RecentActivity/RecentActivity.js';
 
 export default function Exhibition() {
   return (
@@ -13,6 +14,8 @@ export default function Exhibition() {
 
         <h2 className={styles.hotTitle}>最近热门</h2>
         <Popular />
+        <h2 className={styles.hotTitle}>最近活动</h2>
+        <RecentActivity />
       </div>
 
       <div className={styles.rightContainer}>

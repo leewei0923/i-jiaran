@@ -33,7 +33,8 @@ export default function DateChart() {
       time[i].unshift(list[i]);
     }
     setWeekList(time);
-    () => {};
+    () => {
+    };
   }, []);
   return (
     <div className={styles.container}>

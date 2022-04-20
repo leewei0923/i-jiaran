@@ -65,10 +65,6 @@ function App() {
     });
   };
 
-  useEffect(() => {
-    genTabList;
-  }, []);
-
   const onSearchContent = () => {
     if (searchContent.length === 0) {
       message.warn('请输入你要搜索的内容');
@@ -97,6 +93,9 @@ function App() {
     [styles.hiden]: !navHiden
   });
 
+  useEffect(() => {
+    genTabList;
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.mask}> </div>
