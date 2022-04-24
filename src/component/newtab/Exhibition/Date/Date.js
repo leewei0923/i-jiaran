@@ -1,25 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { HandleTime } from '~/util/HandleTime.js';
+import { festivalDate } from '~/util/visData.js';
 import styles from './date.module.less';
 
 export default function Date() {
+  const handleTime = new HandleTime();
+  const [date, setDate] = useState('');
+
+  // 处理节日
+  const handleFestival = () => {
+    const list = festivalDate.sort((a, b) => handleTime.getTime(a.date) - handleTime.getTime(b.date));
+    for (let i = 0; i < list.length; i++) {
+      if (handleTime.getTime(list[i].date) - window.Date.now() >= 0) {
+        const countDown = ((handleTime.getTime(list[i].date) - window.Date.now()) / 86400000).toFixed();
+        setDate({ count: countDown, name: list[i].name, id: list[i].id });
+        return;
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleFestival();
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
-        <p className={styles.day}>18</p>
+        <p className={styles.day}>{handleTime.today()}</p>
         <div className={styles.date_Week}>
-          <span className={styles.month}>4月</span>
+          <span className={styles.month}>{`${handleTime.month()}月`}</span>
 
           <p className={styles.year}>
-            2022
-            <span className={styles.week}>周一</span>
+            {handleTime.year()}
+            <span className={styles.week}>{handleTime.getCurrentDay(handleTime.day())}</span>
           </p>
         </div>
       </div>
       <div className={styles.right}>
-        <div className={styles.text}>距离中秋节还有</div>
+        <div className={styles.text}>{`距离${date.name || ''}`}</div>
 
         <div className={styles.dateLine}>
-          10
+          {date.count || ''}
           <span>天</span>
         </div>
       </div>

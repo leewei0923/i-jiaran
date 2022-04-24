@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './exhibition.module.less';
 import Welcome from './Welcome/Welcome.js';
 import Date from './Date/Date.js';
-import DateChart from './DateChart/DateChart.js';
+import DateChart from './Note/Note.js';
 import Popular from './Popular/Popular.js';
 import RecentActivity from './RecentActivity/RecentActivity.js';
 

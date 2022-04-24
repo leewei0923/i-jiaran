@@ -85,6 +85,27 @@ export const SearchEngine = [
   }
 ];
 
+export const festivalDate = [
+  {
+    id: '1',
+    name: '劳动节',
+    date: '2022-05-01',
+    type: 'sys'
+  },
+  {
+    id: '2',
+    name: '端午节',
+    date: '2022-06-03',
+    type: 'sys'
+  },
+  {
+    id: '3',
+    name: '国庆节',
+    date: '2022-10-01',
+    type: 'sys'
+  }
+];
+
 export const Rightlist = [
   {
     id: '1',

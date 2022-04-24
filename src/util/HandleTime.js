@@ -6,34 +6,37 @@ export class HandleTime {
     this.$date = new Date();
   }
 
-  before() {
+  #before() {
     const curWeek = new Date().getDay();
     const nowTime = Date.now(this.date);
     for (let i = curWeek - 1; i >= 0; i--) {
       const year = new Date(nowTime - i * 86400000).getFullYear();
-      const month = new Date(nowTime - i * 86400000).getMonth();
+      const month = new Date(nowTime - i * 86400000).getMonth() + 1;
       const day = new Date(nowTime - i * 86400000).getDate();
       this.weekList.push(`${year}-${month}-${day}`);
     }
   }
 
-  after() {
+  #after() {
     const curWeek = 7 - new Date().getDay();
     const nowTime = Date.now(this.date);
     for (let i = 1; i <= curWeek; i++) {
       const year = new Date(nowTime + i * 86400000).getFullYear();
-      const month = new Date(nowTime + i * 86400000).getMonth();
+      const month = new Date(nowTime + i * 86400000).getMonth() + 1;
       const day = new Date(nowTime + i * 86400000).getDate();
       this.weekList.push(`${year}-${month}-${day}`);
     }
   }
 
+  // 最近一周的日期
+
   getWeekList() {
-    this.before();
-    this.after();
+    this.#before();
+    this.#after();
     return this.weekList;
   }
 
+  // 生成周一样式的文字
   getCurrentDay(e) {
     if (e < 0 || e > 7) {
       return '';
@@ -42,16 +45,28 @@ export class HandleTime {
     return this.dayList[e - 1];
   }
 
+  // 今天的日期例如今天 04.21 返回为 21
   today() {
     return this.$date.getDate();
   }
 
+  // 星期
+  day() {
+    return this.$date.getDay();
+  }
+
+  // 年份
   year() {
     return this.$date.getFullYear();
   }
 
+  // 月份
   month() {
-    return this.$date.getMonth();
+    return this.$date.getMonth() + 1;
+  }
+
+  getTime(date) {
+    return new Date(date).getTime();
   }
 
   interval(ms, callback) {

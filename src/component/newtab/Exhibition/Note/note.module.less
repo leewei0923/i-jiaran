@@ -1,0 +1,92 @@
+.container {
+  width: 93%;
+  height: 200px;
+  position: relative;
+  background-color: #f5f5f7;
+  border-radius: 10px;
+  .top {
+    width: 95%;
+    position: relative;
+    height: 25px;
+    margin: 0 auto;
+    display: flex;
+    font-size: 15px;
+    justify-content: space-between;
+    .appName {
+      line-height: 25px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .addIcon {
+      width: 10px;
+      height: 15px;
+      cursor: pointer;
+      margin: 5px;
+      position: relative;
+      > p {
+        width: 2px;
+        height: 15px;
+        background-color: black;
+        margin: auto;
+        &::after {
+          content: '';
+          width: 2px;
+          height: 15px;
+          background-color: black;
+          display: block;
+          transform: rotate(90deg);
+        }
+      }
+    }
+  }
+
+  hr {
+    width: 93%;
+    margin: 3px auto;
+    background-color: #f0f5f9;
+  }
+
+  .mainContent {
+    width: 93%;
+    margin: 0 auto;
+
+    .todolist {
+      width: 100%;
+      display: flex;
+      height: 1rem;
+      overflow: hidden;
+      position: relative;
+      margin: 3px 0;
+
+      .checkBox {
+        height: 1rem;
+      }
+      .content {
+        font-size: 12px;
+        width: 83%;
+        height: 1rem;
+        margin: 0 3px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        border: none;
+        outline: none;
+        background-color: transparent;
+      }
+      .date {
+        font-size: 12px;
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+}
+
+[data-state='medium'] {
+  color: orange;
+}
+[data-state='importent'] {
+  color: red;
+}
