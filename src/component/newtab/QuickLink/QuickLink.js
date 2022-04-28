@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, message, Popconfirm } from 'antd';
 import { MoreIcon } from '../../Icon.js';
 import styles from './quickLink.module.less';
@@ -12,11 +12,14 @@ export default function QuickLink(props) {
    */
   const { ico, linkName, turl, callback } = props;
 
+  const [imgState, setImgState] = useState(true);
+
   //  操作按钮
   // 确定
   const onDelete = () => {
     chrome.history.deleteUrl({ url: turl }, () => {
       message.success('删除成功');
+      // m
       callback;
     });
   };
@@ -24,6 +27,10 @@ export default function QuickLink(props) {
   //  删除
   const onCancle = () => {
     message.warn('已取消');
+  };
+
+  const onImgError = () => {
+    setImgState(false);
   };
 
   // 跳转页面
@@ -41,8 +48,8 @@ export default function QuickLink(props) {
       <div className={styles.inneContainer} onClick={() => goto()}>
         <div className={styles.icoBox}>
           <div className={styles.icon}>
-            {ico ? (
-              <img src={ico} alt="" className={styles.ico} />
+            {imgState ? (
+              <img src={`${ico}/favicon.ico`} alt="" className={styles.ico} onError={onImgError} />
             ) : (
               <p className={styles.imgFont}>{genFirstWord(linkName)}</p>
             )}

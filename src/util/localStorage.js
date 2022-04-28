@@ -23,6 +23,7 @@ export default class HandleStorage {
     } catch (err) {
       return err;
     }
+    this.setItem(key, value);
   }
 
   // 移除key值

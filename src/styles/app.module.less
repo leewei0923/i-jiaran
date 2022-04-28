@@ -23,18 +23,30 @@
       width: 40px;
       height: 40px;
       font-size: 25px;
+      mix-blend-mode: difference;
     }
 
     .more {
       background-color: transparent;
       border: none;
       margin: 50px;
+      color: #333333;
+
+      &:hover {
+        transform: scale(1.1);
+        transition: all 0.5s ease-in-out;
+      }
     }
 
     .setting {
       background-color: transparent;
       border: none;
       margin: 50px;
+
+      &:hover {
+        transform: scale(1.1);
+        transition: all 0.5s ease-in-out;
+      }
     }
   }
 
@@ -164,7 +176,7 @@
         border-radius: 0 15px 15px 0;
         // padding: 10px 0;
         overflow: hidden;
-        background-color: #FFFFFF;
+        background-color: #ffffff;
 
         .closeBtn {
           position: absolute;
@@ -178,6 +190,14 @@
   }
 }
 
+.settingPopup {
+  position: inherit;
+  display: block;
+}
+
+.close {
+  display: none;
+}
 // 遮罩层
 
 .mask {

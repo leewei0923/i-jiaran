@@ -133,7 +133,7 @@ function MenuSvg() {
   return (
     <svg width="1em" height="1em" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <path
-        fill="#333333"
+        fill="currentColor"
         d="M128 170.666667h768v85.333333H128V170.666667z m256 298.666666h512v85.333334H384v-85.333334z m-256 298.666667h768v85.333333H128v-85.333333z"
       />
     </svg>

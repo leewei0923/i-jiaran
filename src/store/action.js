@@ -11,3 +11,17 @@ export const changeDefaultSearch = (state) => (dispatch) =>
     type: types.DEFAULTSEARCH,
     content: state
   });
+
+export const changeBackImg = (state) => (dispatch) =>
+  dispatch({
+    type: types.DEFAULTBACKIMG,
+    content: state
+  });
+
+// 改变主页面模式状态
+
+export const changePageMode = (state) => (dispatch) =>
+  dispatch({
+    type: types.DEFAULTMODESTATE,
+    content: state
+  });
