@@ -69,6 +69,15 @@ export class HandleTime {
     return new Date(date).getTime();
   }
 
+  random(num = 1) {
+    return Math.floor(Math.random() * 10 * num);
+  }
+
+  // 完整的年月日
+  genFullDate(mark = '') {
+    return `${this.year()}${mark}${this.month()}${mark}${this.today()}`;
+  }
+
   interval(ms, callback) {
     const start = document.timeline ? document.timeline.currentTime : performance.now();
     function timer1(time) {

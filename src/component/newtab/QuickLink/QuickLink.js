@@ -12,7 +12,7 @@ export default function QuickLink(props) {
    */
   const { ico, linkName, turl, callback } = props;
 
-  const [imgState, setImgState] = useState(true);
+  const [imgState, setImgState] = useState(false);
 
   //  操作按钮
   // 确定

@@ -13,17 +13,13 @@ export default function RightNav(props) {
   if (leftNavState === 'index') return;
   const lastRightData = GenRightNavData(data, leftNavState);
 
-  const onPageChange = (e) => {
-    console.log(e);
-  };
-
   return (
     <div className={styles.container}>
       {lastRightData.map((item) => (
         <LinkCard title={item.name} icon={item.icon} desc="优秀的js应用" key={item.key + item.id} />
       ))}
       <div className={styles.pagination}>
-        <Pagination pageSize="18" total="36" showLessItems size="small" onChange={(e) => onPageChange(e)} />
+        <Pagination pageSize="18" total="36" showLessItems size="small" />
       </div>
     </div>
   );
