@@ -25,3 +25,10 @@ export const changePageMode = (state) => (dispatch) =>
     type: types.DEFAULTMODESTATE,
     content: state
   });
+
+// 改变右页面导航页数
+export const changePaginationNum = (state) => (dispatch) =>
+  dispatch({
+    type: types.DEFAULTPAGINATIONNUM,
+    content: state
+  });

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, message, Switch } from 'antd';
+import { Button, message, Switch, Tooltip } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
+import ChromeStorage from '~/util/ChromeStorage.js';
 import HandleStorage from '~/util/localStorage.js';
 import { changePageMode } from '~/store/action.js';
 import styles from './setting.module.less';
@@ -8,7 +9,9 @@ import styles from './setting.module.less';
 export default function Setting(props) {
   const { callback } = props;
   const handleStorage = new HandleStorage();
+  const chromeStorage = new ChromeStorage();
   const dispatch = useDispatch();
+
   const userName = useRef(null);
   const motto = useRef(null);
   const [initalData, setInitalData] = useState(handleStorage.getItem('personInfo'));
@@ -48,9 +51,33 @@ export default function Setting(props) {
     callback();
   };
 
+  // 健提醒
+  const changeRemindNum = (e) => {
+    if (e) {
+      chromeStorage.setLocalItem('rest', 1);
+      handleStorage.setItem('rest', true);
+    } else {
+      chromeStorage.setLocalItem('rest', 0);
+      handleStorage.setItem('rest', false);
+    }
+  };
+
+  // 喝水提醒
+  const onDranking = (e) => {
+    if (e) {
+      chromeStorage.setLocalItem('drank', 45);
+      handleStorage.setItem('drank', true);
+    } else {
+      chromeStorage.setLocalItem('drank', 0);
+      handleStorage.setItem('drank', false);
+    }
+  };
+
   useEffect(() => {
     const data = handleStorage.getItem('personInfo');
-    if (typeof handleStorage.getItem('pageMode') === 'boolean') dispatch(changePageMode(!handleStorage.getItem('pageMode')));
+    if (typeof handleStorage.getItem('pageMode') === 'boolean') {
+      dispatch(changePageMode(!handleStorage.getItem('pageMode')));
+    }
     setInitalData(data);
   }, []);
 
@@ -84,6 +111,22 @@ export default function Setting(props) {
             defaultValue={initalData ? initalData.motto : '个性签名'}
             ref={motto}
           />
+        </div>
+
+        <div className={styles.option}>
+          <Tooltip title="默认开启,间隔2个小时提醒">
+            <span className={styles.optionName}>健康提醒</span>
+          </Tooltip>
+
+          <Switch onChange={changeRemindNum} defaultChecked={handleStorage.getItem('rest')} />
+        </div>
+
+        <div className={styles.option}>
+          <Tooltip title="喝水提醒，间隔45分钟">
+            <span className={styles.optionName}>喝水提醒</span>
+          </Tooltip>
+
+          <Switch onChange={onDranking} defaultChecked={handleStorage.getItem('drank')} />
         </div>
 
         <div className={styles.switchBackground} onClick={onSwitchBackground}>

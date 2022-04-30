@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import classnames from 'classnames';
 import styles from './leftNav.module.less';
-import { changeLeftNavState } from '~/store/action.js';
+import { changeLeftNavState, changePaginationNum } from '~/store/action.js';
 
 export default function LeftNav(props) {
   const { data } = props;
@@ -12,6 +12,7 @@ export default function LeftNav(props) {
 
   const onDown = (info) => {
     dispatch(changeLeftNavState(info.key));
+    dispatch(changePaginationNum(1));
     navigate('rightNav');
   };
 

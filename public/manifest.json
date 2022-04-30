@@ -12,7 +12,8 @@
     "notifications",
     "webRequest",
     "storage",
-    "activeTab"
+    "activeTab",
+    "bookmarks"
   ],
   "host_permissions": [
     "http://*/*",

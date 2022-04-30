@@ -18,6 +18,11 @@ const initPageMode = {
   defaultModeState: true
 };
 
+// 有导航页面
+const initpaginationNum = {
+  defaultNum: 1
+};
+
 // eslint-disable-next-line default-param-last
 const leftNavStateReducer = (state = initLeftNavState, { type, changeState }) => {
   switch (type) {
@@ -59,11 +64,23 @@ const switchPageModeReducer = (state = initPageMode, { type, content }) => {
   }
 };
 
+// 用于该变页数
+// eslint-disable-next-line default-param-last
+const changePaginationNumReducer = (state = initpaginationNum, { type, content }) => {
+  switch (type) {
+    case types.DEFAULTPAGINATIONNUM:
+      return { defaultNum: content };
+    default:
+      return state;
+  }
+};
+
 const reducers = {
   changeNavState: leftNavStateReducer,
   defaultSearch: defaultSearchReducer,
   switchBackImg: switchBackImgReducer,
-  switchPageMode: switchPageModeReducer
+  switchPageMode: switchPageModeReducer,
+  changePaginationNum: changePaginationNumReducer
 };
 
 export default combineReducers(reducers);

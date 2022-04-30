@@ -8,7 +8,8 @@ import QuickLink from './component/newtab/QuickLink/QuickLink.js';
 import LeftNav from './component/newtab/LeftNav/LeftNav.js';
 import RightNav from './component/newtab/RightNav/RightNav.js';
 import { changeLeftNavState, changeDefaultSearch } from './store/action.js';
-import { leftlist, Rightlist } from './util/visData.js';
+import { leftlist } from './util/visData.js';
+import { TabsDataList } from './util/tab.js';
 import Exhibition from './component/newtab/Exhibition/Exhibition.js';
 import SearchList from './component/newtab/SearchList/SearchList.js';
 // eslint-disable-next-line object-curly-newline
@@ -189,7 +190,7 @@ function App() {
 
             <Routes>
               <Route path="/" element={<Exhibition />} />
-              <Route path="rightNav" element={<RightNav data={Rightlist} />} />
+              <Route path="rightNav" element={<RightNav data={TabsDataList} />} />
             </Routes>
           </div>
         </div>

@@ -2,7 +2,7 @@ export class HandleTime {
   constructor(date) {
     this.date = date;
     this.weekList = [];
-    this.dayList = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
+    this.dayList = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
     this.$date = new Date();
   }
 
@@ -42,12 +42,16 @@ export class HandleTime {
       return '';
     }
 
-    return this.dayList[e - 1];
+    return this.dayList[e];
   }
 
   // 今天的日期例如今天 04.21 返回为 21
   today() {
-    return this.$date.getDate();
+    const today = this.$date.getDate();
+    if (today < 10) {
+      return `0${today}`;
+    }
+    return today;
   }
 
   // 星期
