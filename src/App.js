@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, message } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined, AlignLeftOutlined, SettingOutlined } from '@ant-design/icons';
 import classnames from 'classnames';
 import QuickLink from './component/newtab/QuickLink/QuickLink.js';
 import LeftNav from './component/newtab/LeftNav/LeftNav.js';
@@ -13,10 +13,11 @@ import { TabsDataList } from './util/tab.js';
 import Exhibition from './component/newtab/Exhibition/Exhibition.js';
 import SearchList from './component/newtab/SearchList/SearchList.js';
 // eslint-disable-next-line object-curly-newline
-import { MenuIcon, SettingIcon, IndexIcon, CloseIcon } from './component/Icon.js';
+import { IndexIcon, CloseIcon } from './component/Icon.js';
 import { HandleTab } from '~/util/handleTabs.js';
 import Setting from './component/newtab/Setting/Setting.js';
 import HandleStorage from './util/localStorage.js';
+import Title from './component/newtab/Title/Title.js';
 import styles from '~/styles/app.module.less';
 
 function App() {
@@ -122,17 +123,31 @@ function App() {
     genTabList;
   }, []);
   return (
-    <div className={styles.container} style={{ background: `url(${handleStorage.getItem('backImg') || ''})` }}>
+    <div
+      className={styles.container}
+      style={{
+        background: `url(${handleStorage.getItem('backImg') || '../../images/bg.jpg'})`,
+        backgroundSize: '110% 150%'
+      }}
+    >
       <div className={styles.mask}> </div>
       {/* 左右两个选项 */}
       <div className={styles.topOptions}>
-        <Button icon={<MenuIcon style={{ fontSize: '32px' }} />} className={styles.more} onClick={() => onOpenNav()} />
         <Button
-          icon={<SettingIcon style={{ fontSize: '32px' }} />}
+          icon={<AlignLeftOutlined style={{ fontSize: '32px' }} />}
+          className={styles.more}
+          onClick={() => onOpenNav()}
+        />
+        <Button
+          icon={<SettingOutlined style={{ fontSize: '32px' }} />}
           className={styles.setting}
           onClick={() => onSettingClose()}
         />
       </div>
+
+      <section className={styles.Apptitle} style={{ display: pageModeState ? '' : 'none' }}>
+        <Title />
+      </section>
 
       {/* 搜索框 */}
       <div className={styles.searchContainer} style={{ display: pageModeState ? 'none' : '' }}>

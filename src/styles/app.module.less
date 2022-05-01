@@ -20,17 +20,17 @@
 
     .more,
     .setting {
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       font-size: 25px;
-      mix-blend-mode: difference;
+      background-color: rgba(235, 235, 235, 0.7);
+      border-radius: 10px;
+      padding: 5px;
     }
 
     .more {
-      background-color: transparent;
       border: none;
       margin: 50px;
-      color: #333333;
 
       &:hover {
         transform: scale(1.1);
@@ -39,7 +39,6 @@
     }
 
     .setting {
-      background-color: transparent;
       border: none;
       margin: 50px;
 
@@ -48,6 +47,12 @@
         transition: all 0.5s ease-in-out;
       }
     }
+  }
+
+  // app标题
+
+  .Apptitle {
+    width: 100%;
   }
 
   // 搜索框

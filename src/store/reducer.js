@@ -23,6 +23,16 @@ const initpaginationNum = {
   defaultNum: 1
 };
 
+// 初始首页动画状态
+const initAnimation = {
+  defaultState: undefined
+};
+
+// 关闭简洁模式后首页颜色
+const initSimpleColor = {
+  defaultColor: 'black'
+};
+
 // eslint-disable-next-line default-param-last
 const leftNavStateReducer = (state = initLeftNavState, { type, changeState }) => {
   switch (type) {
@@ -75,12 +85,34 @@ const changePaginationNumReducer = (state = initpaginationNum, { type, content }
   }
 };
 
+// eslint-disable-next-line default-param-last
+const changeAnimationStateReducer = (state = initAnimation, { type, content }) => {
+  switch (type) {
+    case types.ANIMATION:
+      return { defaultState: content };
+    default:
+      return state;
+  }
+};
+
+// eslint-disable-next-line default-param-last
+const changeSimpleColor = (state = initSimpleColor, { type, content }) => {
+  switch (type) {
+    case types.SIMPLECOLOR:
+      return { defaultColor: content };
+    default:
+      return state;
+  }
+};
+
 const reducers = {
   changeNavState: leftNavStateReducer,
   defaultSearch: defaultSearchReducer,
   switchBackImg: switchBackImgReducer,
   switchPageMode: switchPageModeReducer,
-  changePaginationNum: changePaginationNumReducer
+  changePaginationNum: changePaginationNumReducer,
+  animationState: changeAnimationStateReducer,
+  simpleColor: changeSimpleColor
 };
 
 export default combineReducers(reducers);

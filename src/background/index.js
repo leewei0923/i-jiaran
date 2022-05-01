@@ -1,25 +1,9 @@
 import ChromeStorage from '~/util/ChromeStorage.js';
 
-function getUrl(url) {
-  if (typeof url !== 'string') return 'the type of data is not string';
-  const urlReg = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/g;
-  const ipReg = /^http:\/\/\d*\.*\d\.*\d\.*\d:\d*/g;
-
-  if (urlReg.test(url)) {
-    return url.match(urlReg)[0];
-  }
-  if (ipReg.test(url)) {
-    return url.match(ipReg)[0];
-  }
-
-  return `${url} has error, can't match accurate`;
-}
-
 // 获取当前选项卡ID
 // eslint-disable-next-line no-unused-vars
 function getCurrentTabId(callback) {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    console.log(tabs);
     if (callback) callback(tabs);
   });
 }
@@ -35,12 +19,13 @@ function sendMessageToContentScript(message, callback) {
 
 // 分享网页
 chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-    id: 'share',
-    title: '分享网页',
-    type: 'normal',
-    contexts: ['all']
-  });
+  // m 后续更新
+  // chrome.contextMenus.create({
+  //   id: 'share',
+  //   title: '分享网页',
+  //   type: 'normal',
+  //   contexts: ['all']
+  // });
 
   chrome.contextMenus.create({
     id: 'shareText',
@@ -69,7 +54,6 @@ chrome.runtime.onInstalled.addListener(() => {
         host: getUrl(hurl),
         icoUrl: favIconUrl
       });
-      console.log(list);
       // sendMessageToContentScript({ cmd: 'test', value: '你好，我是popup！' }, (response) => {
       //   console.log(`来自content的回复：${response}`);
       // });
@@ -81,15 +65,15 @@ chrome.runtime.onInstalled.addListener(() => {
       //   message: tab.title
       // });
     } else if (info.menuItemId === 'shareText') {
-      sendMessageToContentScript({ cmd: 'shareText', value: info.selectionText, url: info.pageUrl }, (response) => {
-        console.log(`来自content的回复：${response}`);
+      sendMessageToContentScript({ cmd: 'shareText', value: info.selectionText, url: info.pageUrl }, () => {
+        // console.log(`来自content的回复：${response}`);
       });
     } else if (info.menuItemId === 'captureVisible') {
       chrome.windows.getCurrent((win) => {
         // 抓取当前tab的内容
         chrome.tabs.captureVisibleTab(win.id, {}, (data) => {
-          sendMessageToContentScript({ cmd: 'pic', value: data }, (response) => {
-            console.log(`来自content的回复：${response}`);
+          sendMessageToContentScript({ cmd: 'pic', value: data }, () => {
+            // console.log(`来自content的回复：${response}`);
           });
         });
       });

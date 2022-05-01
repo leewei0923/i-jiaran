@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, message, Switch, Tooltip } from 'antd';
+import { Button, message, Switch, Tooltip, Radio } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import ChromeStorage from '~/util/ChromeStorage.js';
 import HandleStorage from '~/util/localStorage.js';
-import { changePageMode } from '~/store/action.js';
+import { chanegSimpleColor, changeAnimationState, changePageMode } from '~/store/action.js';
 import styles from './setting.module.less';
 
 export default function Setting(props) {
@@ -15,7 +15,8 @@ export default function Setting(props) {
   const userName = useRef(null);
   const motto = useRef(null);
   const [initalData, setInitalData] = useState(handleStorage.getItem('personInfo'));
-  const pageModestate = useSelector((s) => s.switchPageMode.defaultModeState);
+  const pageModestate = useSelector((s) => s.switchPageMode.defaultModeState); // 首页模式 true 简洁 false 复杂
+  // const animationSate = useSelector((s) => s.animationState.defaultState); // 是否开启动画 默认是true 关闭动画
 
   // 点击保存文件
   const onSave = () => {
@@ -35,10 +36,12 @@ export default function Setting(props) {
 
   const onSwitchBackground = () => {
     const imgList = [
-      'https://cdn.pixabay.com/photo/2022/04/18/19/19/forest-7141417_1280.jpg',
+      'https://cdn.pixabay.com/photo/2022/02/23/11/57/flowers-7030589_1280.jpg',
       'https://cdn.pixabay.com/photo/2022/04/12/18/00/europe-7128531_1280.jpg',
       'https://cdn.pixabay.com/photo/2022/04/17/17/54/mountains-7138605_1280.jpg',
-      'https://cdn.pixabay.com/photo/2021/08/30/21/29/port-6587129_1280.jpg'
+      'https://cdn.pixabay.com/photo/2021/08/30/21/29/port-6587129_1280.jpg',
+      'https://cdn.pixabay.com/photo/2022/01/18/16/49/town-6947538_1280.jpg',
+      'https://cdn.pixabay.com/photo/2022/01/31/15/18/coffee-6984075_1280.jpg'
     ];
     const rand = Math.floor(Math.random() * 4);
     handleStorage.setItem('backImg', imgList[rand]);
@@ -51,7 +54,7 @@ export default function Setting(props) {
     callback();
   };
 
-  // 健提醒
+  // 健康提醒
   const changeRemindNum = (e) => {
     if (e) {
       chromeStorage.setLocalItem('rest', 1);
@@ -71,6 +74,23 @@ export default function Setting(props) {
       chromeStorage.setLocalItem('drank', 0);
       handleStorage.setItem('drank', false);
     }
+  };
+
+  const [radioSwitch, setRadioSwitch] = useState(handleStorage.getItem('animation') ?? true);
+  // 简洁模式下动画开启和关闭
+  const onChangeAnimation = (e) => {
+    handleStorage.setItem('animation', e);
+    setRadioSwitch(e);
+    dispatch(changeAnimationState(e));
+  };
+
+  // 改变简洁模式下字体颜色
+  const [simpleColor, setSimpleColor] = useState(handleStorage.getItem('simpleColor') ?? '#0d0d0d');
+  const onSimpleColorChange = (e) => {
+    console.log('radio checked', e.target.value);
+    handleStorage.setItem('simpleColor', e.target.value);
+    dispatch(chanegSimpleColor(e.target.value));
+    setSimpleColor(e.target.value);
   };
 
   useEffect(() => {
@@ -98,7 +118,7 @@ export default function Setting(props) {
             placeholder="你的昵称"
             className={styles.input}
             ref={userName}
-            defaultValue={initalData ? initalData.username : '你的昵称'}
+            defaultValue={initalData ? initalData.username : '嘉然'}
           />
         </div>
 
@@ -108,7 +128,7 @@ export default function Setting(props) {
             type="text"
             placeholder="个性签名"
             className={styles.input}
-            defaultValue={initalData ? initalData.motto : '个性签名'}
+            defaultValue={initalData ? initalData.motto : '今天又是满满元气的一天'}
             ref={motto}
           />
         </div>
@@ -127,6 +147,25 @@ export default function Setting(props) {
           </Tooltip>
 
           <Switch onChange={onDranking} defaultChecked={handleStorage.getItem('drank')} />
+        </div>
+
+        <div className={styles.option}>
+          <span className={styles.optionName}>关闭简洁模式动画</span>
+          <Switch onChange={(e) => onChangeAnimation(e)} defaultChecked={handleStorage.getItem('animation') ?? true} />
+        </div>
+
+        <div className={styles.option}>
+          <Radio.Group onChange={onSimpleColorChange} value={simpleColor} size disabled={!(radioSwitch ?? false)}>
+            <Radio value="#0d0d0d">
+              <span style={{ color: 'white' }}>黑</span>
+            </Radio>
+            <Radio value="#FFFFFF">
+              <span style={{ color: 'white' }}>白</span>
+            </Radio>
+            <Radio value="#008DFF">
+              <span style={{ color: 'white' }}>蓝</span>
+            </Radio>
+          </Radio.Group>
         </div>
 
         <div className={styles.switchBackground} onClick={onSwitchBackground}>

@@ -32,3 +32,17 @@ export const changePaginationNum = (state) => (dispatch) =>
     type: types.DEFAULTPAGINATIONNUM,
     content: state
   });
+
+// 改变简洁模式中动画开启状态
+export const changeAnimationState = (state) => (dispatch) =>
+  dispatch({
+    type: types.ANIMATION,
+    content: state
+  });
+
+// 改变关闭动画后字体的颜色
+export const chanegSimpleColor = (state) => (dispatch) =>
+  dispatch({
+    type: types.SIMPLECOLOR,
+    content: state
+  });

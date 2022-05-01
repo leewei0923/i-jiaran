@@ -1,7 +1,7 @@
 {
   "name": "i嘉然",
-  "description": "基于Asoul人物形象制作多功能谷歌插件",
-  "version": "0.0.2",
+  "description": "小众插件，为自己而造，持续更新，逐渐完善这个插件，希望未来使用得心应手。",
+  "version": "0.1.0",
   "manifest_version": 3,
   "permissions": [
     "contextMenus",
@@ -35,6 +35,11 @@
   "background": {
     "service_worker": "/static/js/background.js"
   },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "homepage_url": "https://doc.icenew.top",
   "content_scripts": [
     {
       "matches": [
