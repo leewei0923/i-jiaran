@@ -19,7 +19,7 @@ function sendMessageToContentScript(message, callback) {
 
 // 分享网页
 chrome.runtime.onInstalled.addListener(() => {
-  // m 后续更新
+  // m 后续更新0
   // chrome.contextMenus.create({
   //   id: 'share',
   //   title: '分享网页',
@@ -41,39 +41,17 @@ chrome.runtime.onInstalled.addListener(() => {
     contexts: ['all']
   });
 
-  const list = [];
-
-  chrome.contextMenus.onClicked.addListener((info, tab) => {
-    if (info.menuItemId === 'share') {
-      const { favIconUrl, title, url: hurl, id: hid } = tab;
-      list.push({
-        id: hid,
-        name: title,
-        url: hurl,
-        key: Date.now(),
-        host: getUrl(hurl),
-        icoUrl: favIconUrl
-      });
-      // sendMessageToContentScript({ cmd: 'test', value: '你好，我是popup！' }, (response) => {
-      //   console.log(`来自content的回复：${response}`);
-      // });
-
-      // chrome.notifications.create(null, {
-      //   type: 'basic',
-      //   iconUrl: '../../images/logo.png',
-      //   title: '新消息提醒',
-      //   message: tab.title
-      // });
-    } else if (info.menuItemId === 'shareText') {
-      sendMessageToContentScript({ cmd: 'shareText', value: info.selectionText, url: info.pageUrl }, () => {
-        // console.log(`来自content的回复：${response}`);
+  chrome.contextMenus.onClicked.addListener((info) => {
+    if (info.menuItemId === 'shareText') {
+      sendMessageToContentScript({ cmd: 'shareText', value: info.selectionText, url: info.pageUrl }, (res) => {
+        console.log(`来自content的回复：${res}`);
       });
     } else if (info.menuItemId === 'captureVisible') {
       chrome.windows.getCurrent((win) => {
         // 抓取当前tab的内容
         chrome.tabs.captureVisibleTab(win.id, {}, (data) => {
-          sendMessageToContentScript({ cmd: 'pic', value: data }, () => {
-            // console.log(`来自content的回复：${response}`);
+          sendMessageToContentScript({ cmd: 'pic', value: data }, (res) => {
+            console.log(`来自content的回复：${res}`);
           });
         });
       });

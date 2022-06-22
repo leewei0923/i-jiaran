@@ -103,6 +103,9 @@ function App() {
       case 'Bing':
         window.location.assign(`https://www.bing.com/search?q=${searchContent}&PC=U316&FORM=CHROMN`);
         break;
+      case 'JueJin':
+        window.location.assign(`https://juejin.cn/search?query=${searchContent}`);
+        break;
       default:
         break;
     }
@@ -119,8 +122,8 @@ function App() {
   });
 
   useEffect(() => {
-    // m
-    genTabList;
+    // -
+    // genTabList();
   }, []);
   return (
     <div
@@ -214,8 +217,6 @@ function App() {
       <div className={settingPopup}>
         <Setting callback={onPageMode} />
       </div>
-
-      <div className={styles.live2d}></div>
     </div>
   );
 }

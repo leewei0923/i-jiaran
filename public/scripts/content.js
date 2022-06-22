@@ -12,7 +12,7 @@ function genQRPopup(value) {
   });
   const pnode = document.createElement('p');
   pnode.innerText = '点击二维码,即可关闭';
-  sectionNode.appendChild(pnode);
+  $('.in_content_container').append(pnode);
   document.body.append(sectionNode);
   setTimeout(() => {
     document.body.removeChild(sectionNode);

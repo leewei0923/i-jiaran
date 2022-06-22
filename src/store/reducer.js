@@ -30,7 +30,7 @@ const initAnimation = {
 
 // 关闭简洁模式后首页颜色
 const initSimpleColor = {
-  defaultColor: 'black'
+  defaultColor: undefined
 };
 
 // eslint-disable-next-line default-param-last

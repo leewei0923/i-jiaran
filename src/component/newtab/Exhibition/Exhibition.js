@@ -3,7 +3,6 @@ import styles from './exhibition.module.less';
 import Welcome from './Welcome/Welcome.js';
 import Date from './Date/Date.js';
 import DateChart from './Note/Note.js';
-import Popular from './Popular/Popular.js';
 import RecentActivity from './RecentActivity/RecentActivity.js';
 
 export default function Exhibition() {
@@ -11,9 +10,6 @@ export default function Exhibition() {
     <div className={styles.container}>
       <div className={styles.leftContainer}>
         <Welcome />
-
-        <h2 className={styles.hotTitle}>最近热门</h2>
-        <Popular />
         <h2 className={styles.hotTitle}>最近活动</h2>
         <RecentActivity />
       </div>

@@ -6,10 +6,12 @@ import styles from './title.module.less';
 
 export default function Title() {
   const handleStorage = new HandleStorage();
+
+  // 更新动画选项
   const [closeAnimat, setCloseAnimat] = useState(handleStorage.getItem('animation') ?? true);
+  const animationState = useSelector((state) => state.animationState.defaultState); // 用来通知更新的
 
-  const animationState = useSelector((state) => state.animationState.defaultState);
-
+  // 简单选项的文字更改
   const [simpleColorContent, setSimpleColor] = useState(handleStorage.getItem('simpleColor') ?? 'black');
   const simpleColor = useSelector((state) => state.simpleColor.defaultColor);
 
@@ -21,7 +23,7 @@ export default function Title() {
     <div className={styles.container}>
       <h1
         className={closeAnimat ? styles.titleLight : styles.title}
-        style={{ color: animationState ? simpleColorContent : undefined }}
+        style={{ color: closeAnimat ? simpleColorContent : undefined }}
       >
         Hi 嘉然!
       </h1>

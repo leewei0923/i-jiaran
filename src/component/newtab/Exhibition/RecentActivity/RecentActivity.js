@@ -3,11 +3,7 @@ import { List, Typography } from 'antd';
 import styles from './recentActivity.module.less';
 
 const data = [
-  'Racing car sprays burning fuel into crowd.',
-  'Japanese princess to wed commoner.',
-  'Australian walks 100km after outback crash.',
-  'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.'
+  '完成掘金插件的开发工作'
 ];
 export default function RecentActivity() {
   return (

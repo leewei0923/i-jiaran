@@ -87,7 +87,6 @@ export default function Setting(props) {
   // 改变简洁模式下字体颜色
   const [simpleColor, setSimpleColor] = useState(handleStorage.getItem('simpleColor') ?? '#0d0d0d');
   const onSimpleColorChange = (e) => {
-    console.log('radio checked', e.target.value);
     handleStorage.setItem('simpleColor', e.target.value);
     dispatch(chanegSimpleColor(e.target.value));
     setSimpleColor(e.target.value);

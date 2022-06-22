@@ -10,7 +10,8 @@ import {
   SougouIcon,
   BaiduIcon,
   BingIcon,
-  GoogleIcon
+  GoogleIcon,
+  JuejinIcon
 } from '~/component/Icon.js';
 
 export const leftlist = [
@@ -82,6 +83,12 @@ export const SearchEngine = [
     name: '必应',
     key: 'Bing',
     icon: <BingIcon style={{ fontSize: '20px' }} />
+  },
+  {
+    id: '5',
+    name: '掘金',
+    key: 'JueJin',
+    icon: <JuejinIcon style={{ fontSize: '20px' }} />
   }
 ];
 
